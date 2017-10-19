@@ -16,8 +16,8 @@ public:
 	void setElem(const E e) { elm = e; }
 	T_DN *getPrev() { return prev; }
 	T_DN *getNext() { return next; }
-	void setPrev(T_DN *p) { prev = p; }
-	void setNext(T_DN *n) { next = n; }
+	void setPrev(T_DN *p) { this->prev = p; }
+	void setNext(T_DN *n) { this->next = n; }
 private:
 	E elm;
 	T_DN *prev;

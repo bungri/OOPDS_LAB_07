@@ -51,6 +51,7 @@ T_DLL<E>::T_DLL()
 template<typename E>
 T_DLL<E>::~T_DLL()
 {
+	cout << "Deleting all nodes in T_DLL" << endl;
 	while (!empty())
 		removeFront();
 	delete header;
@@ -84,12 +85,13 @@ const E& T_DLL<E>::getBack() const
 template<typename E>
 void T_DLL<E>::add(T_DN<E> *v, const E& e)
 {
-	T_DN<E>* u = new T_DN<E>;
+	T_DN<E>* u = new T_DN<E>();
 	u->setElem(e);
 	u->setNext(v);
 	u->setPrev(v->getPrev());
 	(v->getPrev())->setNext(u);
 	v->setPrev(u);
+	this->num_entry++;
 }
 
 template<typename E>
@@ -112,6 +114,7 @@ void T_DLL<E>::remove(T_DN<E> *v)
 	u->setNext(w);
 	w->setPrev(u);
 	delete v;
+	this->num_entry--;
 }
 
 template<typename E>
@@ -131,10 +134,10 @@ void T_DLL<E>::printDLL(ostream& fout, int elem_per_line)
 {
 	T_DN<E> * u;
 	int count = 0;
-	u = header;
-	while (u != NULL)
+	u = header->getNext();
+	while (u != trailer)
 	{
-		fout << u->getElem();
+		fout << u->getElem() << " ";
 		u = u->getNext();
 		count++;
 		if ((count % elem_per_line) == 0)

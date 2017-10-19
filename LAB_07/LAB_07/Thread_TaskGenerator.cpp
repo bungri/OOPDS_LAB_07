@@ -43,10 +43,8 @@ DWORD WINAPI Thread_TaskGenerator(LPVOID pParam)
 				}
 			}
 			new_task.setTaskGenAddr(myAddr);
-
-			
 			new_task.setTaskID(round);
-			new_task.setTaskPriority(rand() % 20);
+			new_task.setTaskPriority(rand() % 10);
 			new_task.setTaskGenAddr(myAddr);
 			pTask_Q->enQueue_Task(new_task);
 

@@ -4,12 +4,13 @@ Task_Queue::Task_Queue(ostream& fo) : fout(fo)
 {
 	//Urgent_Task_Q = T_DLL<Task>();
 	//Normal_Task_Q = T_DLL<Task>();
-	int i = 0;
 }
 
 Task_Queue::~Task_Queue()
 {
+	cout << "Deleting Urgent_Task_Q" << endl;
 	Urgent_Task_Q.~Urgent_Task_Q();
+	cout << "Deleting Normal_Task_Q" << endl;
 	Normal_Task_Q.~Normal_Task_Q();
 }
 
@@ -23,16 +24,19 @@ void Task_Queue::enQueue_Task(Task t)
 
 Task Task_Queue::deQueue_Task()
 {
-	Task tmp;
-	if (Urgent_Task_Q.empty())
+	Task tmp(-1,-1);
+	if (!Urgent_Task_Q.empty())
 	{
 		tmp = Urgent_Task_Q.getBack();
 		Urgent_Task_Q.removeBack();
 	}
 	else
 	{
-		tmp = Normal_Task_Q.getBack();
-		Normal_Task_Q.removeBack();
+		if (!Normal_Task_Q.empty())
+		{
+			tmp = Normal_Task_Q.getBack();
+			Normal_Task_Q.removeBack();
+		}
 	}
 	return tmp;
 }

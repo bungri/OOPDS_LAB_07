@@ -3,7 +3,7 @@
 //friend operator overloading --------------------------
 ostream & operator<<(ostream &output, const Task &tsk)
 {
-	output << "Task [id(" << setw(2) << tsk.task_id << "), pri(" << setw(2) << tsk.task_priority << ")]" << endl;
+	output << "Task [id(" << setw(2) << tsk.task_id << "), pri(" << setw(2) << tsk.task_priority << ")]";
 	return output;
 }
 

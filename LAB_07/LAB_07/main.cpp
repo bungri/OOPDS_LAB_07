@@ -64,12 +64,13 @@ void main()
 	pThrTaskGenParam = new ThreadParam;
 	pThrTaskGenParam->role = TASK_GENERATOR;
 
-	pThrTaskHndlrParam->myAddr = 0; // link address
-	pThrTaskHndlrParam->pCS_main = &cs_main;
-	pThrTaskHndlrParam->pCS_thrd_mon = &thrdMon.cs_thrd_mon;
-	pThrTaskHndlrParam->pTask_Q = &task_Q;
-	pThrTaskHndlrParam->maxRound = MAX_ROUND;
-	pThrTaskHndlrParam->pThrdMon = &thrdMon;
+	pThrTaskGenParam->targetTaskGen = NUM_TASKS_PER_GEN;
+	pThrTaskGenParam->myAddr = 0; // link address
+	pThrTaskGenParam->pCS_main = &cs_main;
+	pThrTaskGenParam->pCS_thrd_mon = &thrdMon.cs_thrd_mon;
+	pThrTaskGenParam->pTask_Q = &task_Q;
+	pThrTaskGenParam->maxRound = MAX_ROUND;
+	pThrTaskGenParam->pThrdMon = &thrdMon;
 
 	hThreadTaskGen = CreateThread(NULL, 0, Thread_TaskGenerator, pThrTaskGenParam, 0, NULL);
 	for (int round = 0; round < MAX_ROUND; round++)
