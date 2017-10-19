@@ -85,6 +85,7 @@ const E& T_DLL<E>::getBack() const
 template<typename E>
 void T_DLL<E>::add(T_DN<E> *v, const E& e)
 {
+	EnterCriticalSection(&cs_dll)
 	T_DN<E>* u = new T_DN<E>();
 	u->setElem(e);
 	u->setNext(v);
@@ -92,6 +93,7 @@ void T_DLL<E>::add(T_DN<E> *v, const E& e)
 	(v->getPrev())->setNext(u);
 	v->setPrev(u);
 	this->num_entry++;
+	LeaveCriticalSection(&cs_dll);
 }
 
 template<typename E>
@@ -109,12 +111,14 @@ void T_DLL<E>::addBack(const E& e)
 template<typename E>
 void T_DLL<E>::remove(T_DN<E> *v)
 {
+	EnterCriticalSection(&cs_dll)
 	T_DN<E>* u = v->getPrev();
 	T_DN<E>* w = v->getNext();
 	u->setNext(w);
 	w->setPrev(u);
 	delete v;
 	this->num_entry--;
+	LeaveCriticalSection(&cs_dll);
 }
 
 template<typename E>
