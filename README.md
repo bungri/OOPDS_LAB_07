@@ -1,2 +1,2 @@
 # OOPDS_LAB_07
-2017_2학기 자구 Lab 07
+Generic Queueing with multi-thread
